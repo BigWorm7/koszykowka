@@ -16,7 +16,7 @@ import com.pt2.kosz.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-    int punkty = 0;
+    //int punkty = 0;
     PunktyViewModel punktyViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,26 +27,26 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        //binding.textView2.setText("100");
+        binding.textView2.setText(""+punktyViewModel.getPunkty());
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                punkty++;
-                binding.textView2.setText(""+punkty);
+                punktyViewModel.addPunkty(1);
+                binding.textView2.setText(""+punktyViewModel.getPunkty());
             }
         });
         binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                punkty+=2;
-                binding.textView2.setText(""+punkty);
+                punktyViewModel.addPunkty(2);
+                binding.textView2.setText(""+punktyViewModel.getPunkty());
             }
         });
         binding.button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                punkty+=3;
-                binding.textView2.setText(""+punkty);
+                punktyViewModel.addPunkty(3);
+                binding.textView2.setText(""+punktyViewModel.getPunkty());
             }
         });
 
