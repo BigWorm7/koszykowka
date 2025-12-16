@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -26,27 +27,30 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
-        binding.textView2.setText(""+punktyViewModel.getPunkty());
+        punktyViewModel.getPunkty().observe(this,
+                new Observer<Integer>() {
+                    @Override
+                    public void onChanged(Integer integer) {
+                        binding.textView2.setText(""+integer);
+                    }
+                }
+        );
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 punktyViewModel.addPunkty(1);
-                binding.textView2.setText(""+punktyViewModel.getPunkty());
             }
         });
         binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 punktyViewModel.addPunkty(2);
-                binding.textView2.setText(""+punktyViewModel.getPunkty());
             }
         });
         binding.button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 punktyViewModel.addPunkty(3);
-                binding.textView2.setText(""+punktyViewModel.getPunkty());
             }
         });
 
